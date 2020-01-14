@@ -7,6 +7,8 @@ import User from '@/components/home/User'
 import Manager from '@/components/home/Manager'
 import U from '@/components/mark/U'
 import L from '@/components/mark/L'
+import database from '@/components/mark/user_home/database'
+import download from '@/components/mark/user_home/download'
 import UserMark from '@/components/mark/UserMark'
 import vueRsource from 'vue-resource'
 import axios from 'axios'
@@ -22,6 +24,13 @@ Vue.use(Router);
 
 Vue.prototype.$ajax=axios;
 Vue.prototype.$qs = qs;
+/**
+ * 重写路由的push方法
+ */
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+}
 
 export default new Router({
   routes: [
@@ -58,6 +67,17 @@ export default new Router({
       path:'/U',
       name:'U',
       component:U,
+      children:[
+        {
+          path: '/U/database',
+          name: 'database',
+          component: database,
+        },{
+          path:'/U/download',
+          name:'download',
+          component:download,
+        }
+      ]
     },
     {
       path:'/L',

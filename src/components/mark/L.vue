@@ -100,7 +100,7 @@ export default {
             }
             axios.post('http://127.0.0.1:3000/api/user/postFile', formData, config)
             .then(res=>{
-                console.log(res)
+                console.log(res);
             }).catch(err=>{
                 console.log(err)
             })

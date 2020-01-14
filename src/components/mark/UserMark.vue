@@ -14,7 +14,7 @@
         <el-button round>触发词</el-button>
         <el-button type="primary" id="get" @click="get" round>参与方</el-button>
         <el-button type="success" @click="time" round>时间</el-button>
-        <el-button type="info" round>地点</el-button>
+        <el-button type="info" @click="save" round>保存</el-button>
       </el-row>
     </div>
     
@@ -54,13 +54,12 @@ export default {
           para.setAttribute("START",startoffset);
           para.setAttribute("END",endoffset);
           console.log(para);
-        console.log(this.filecontent);
         }else{
           para.setAttribute("START",startoffset);
           console.log(para);
           para.setAttribute("END",endoffset);  
-        console.log(this.filecontent);
         }
+
     },
     time(){
         var myField = document.getElementById("test");
@@ -90,6 +89,12 @@ export default {
           console.log(para);
           para.setAttribute("END",endoffset);  
         }
+    },
+
+    save(){
+      var myField = document.getElementById("test");
+      var newcontent = myField.innerHTML;
+      console.log(newcontent);
     },
   }
 }
